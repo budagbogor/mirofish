@@ -35,6 +35,10 @@ class Config:
     # Zep配置
     ZEP_API_KEY = os.environ.get('ZEP_API_KEY')
     
+    # Supabase配置
+    SUPABASE_URL = os.environ.get('SUPABASE_URL')
+    SUPABASE_KEY = os.environ.get('SUPABASE_KEY')
+    
     # 文件上传配置
     MAX_CONTENT_LENGTH = 50 * 1024 * 1024  # 50MB
     UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), '../uploads')
@@ -71,5 +75,9 @@ class Config:
             errors.append("LLM_API_KEY 未配置")
         if not cls.ZEP_API_KEY:
             errors.append("ZEP_API_KEY 未配置")
+        if not cls.SUPABASE_URL:
+            errors.append("SUPABASE_URL 未配置")
+        if not cls.SUPABASE_KEY:
+            errors.append("SUPABASE_KEY 未配置")
         return errors
 
