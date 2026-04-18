@@ -1,47 +1,36 @@
 <template>
-  <router-view />
+  <AppLayout>
+    <router-view v-slot="{ Component }">
+      <transition 
+        name="fade" 
+        mode="out-in"
+      >
+        <component :is="Component" />
+      </transition>
+    </router-view>
+  </AppLayout>
 </template>
 
 <script setup>
-// 使用 Vue Router 来管理页面
+import AppLayout from './components/layout/AppLayout.vue'
 </script>
 
 <style>
-/* 全局样式重置 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Transition animations */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-#app {
-  font-family: 'JetBrains Mono', 'Space Grotesk', 'Noto Sans SC', monospace;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #000000;
-  background-color: #ffffff;
+.fade-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
 }
 
-/* 滚动条样式 */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #000000;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #333333;
-}
-
-/* 全局按钮样式 */
-button {
-  font-family: inherit;
-}
+/* Base styles are now in index.css */
 </style>
